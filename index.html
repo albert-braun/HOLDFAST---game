@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HOLDFAST</title>
+    <meta
+      name="description"
+      content="A short canvas climb. Run and jump with the keyboard, throw a hook with the mouse, and keep to the ridge."
+    />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="top">
+      <p class="brand">HOLDFAST</p>
+      <p>Twenty-four ledges. Each one a little harder than the last.</p>
+    </header>
+    <main>
+      <canvas id="game" width="960" height="544" tabindex="0" aria-label="Holdfast climb. Use the keyboard to run and jump, and the mouse to throw the hook."></canvas>
+      <section class="help" aria-label="Controls">
+        <h1>How to climb</h1>
+        <ul>
+          <li><kbd>A</kbd> <kbd>D</kbd> or arrows move.</li>
+          <li><kbd>W</kbd>, <kbd>Space</kbd>, or up jumps. Let go early for a short hop.</li>
+          <li>Hold the mouse to aim, then release to throw the hook.</li>
+          <li><kbd>Q</kbd> drops the hook. <kbd>R</kbd> restarts the ledge. <kbd>Esc</kbd> pauses.</li>
+        </ul>
+        <p>Jumps, planks, hooks, keys, and stones. Later ledges stack them together.</p>
+      </section>
+    </main>
+    <div class="touch" aria-label="Touch controls">
+      <button type="button" data-key="ArrowLeft">Left</button>
+      <button type="button" data-key="ArrowRight">Right</button>
+      <button type="button" data-key="Space">Jump</button>
+      <button type="button" data-key="KeyR">Restart</button>
+    </div>
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>

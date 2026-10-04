@@ -1,0 +1,113 @@
+:root {
+  color: #efe6d6;
+  background: #10151c;
+  font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background:
+    radial-gradient(900px 420px at 15% -10%, #243244 0%, transparent 55%),
+    #10151c;
+}
+
+.top {
+  width: min(1100px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 1.2rem 0 0.8rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.4rem 1.5rem;
+  align-items: baseline;
+}
+
+.brand {
+  margin: 0;
+  letter-spacing: 0.16em;
+  font-size: 0.95rem;
+}
+
+.top p:last-child {
+  margin: 0;
+  color: #cbb892;
+}
+
+main {
+  width: min(1100px, calc(100% - 2rem));
+  margin: 0 auto 1.5rem;
+  display: grid;
+  gap: 1rem;
+}
+
+canvas {
+  width: 100%;
+  height: auto;
+  background: #141b24;
+  border: 1px solid #3a4656;
+  cursor: crosshair;
+  touch-action: none;
+}
+
+canvas:focus-visible {
+  outline: 2px solid #c4552e;
+  outline-offset: 3px;
+}
+
+.help {
+  max-width: 40rem;
+}
+
+.help h1 {
+  margin: 0 0 0.4rem;
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+.help ul {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.help li + li { margin-top: 0.25rem; }
+
+.help p { color: #cbb892; }
+
+kbd {
+  font-family: Georgia, serif;
+  border: 1px solid #6d5c45;
+  padding: 0 0.3rem;
+}
+
+.touch {
+  display: none;
+  gap: 0.5rem;
+  width: min(1100px, calc(100% - 2rem));
+  margin: 0 auto 1.5rem;
+}
+
+.touch button {
+  flex: 1;
+  font: inherit;
+  color: #efe6d6;
+  background: #1c2633;
+  border: 1px solid #6d5c45;
+  padding: 0.8rem 0.2rem;
+}
+
+@media (min-width: 900px) {
+  main {
+    grid-template-columns: minmax(0, 1fr) 18rem;
+    align-items: start;
+  }
+}
+
+@media (max-width: 800px) {
+  .touch { display: flex; }
+}
