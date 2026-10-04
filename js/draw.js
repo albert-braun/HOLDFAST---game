@@ -121,7 +121,7 @@ function drawPlayer(ctx, player, time) {
 }
 
 function drawMover(ctx, mover) {
-  const y = mover.y - mover.h;
+  const y = mover.y - mover.h - 2;
   ctx.fillStyle = "#6e5338";
   ctx.fillRect(mover.pos, y, mover.w, mover.h);
   ctx.fillStyle = "#e7d3b0";
