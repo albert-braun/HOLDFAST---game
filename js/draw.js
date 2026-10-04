@@ -121,13 +121,14 @@ function drawPlayer(ctx, player, time) {
 }
 
 function drawMover(ctx, mover) {
+  const y = mover.y - mover.h;
   ctx.fillStyle = "#6e5338";
-  ctx.fillRect(mover.pos, mover.y, mover.w, mover.h);
+  ctx.fillRect(mover.pos, y, mover.w, mover.h);
   ctx.fillStyle = "#e7d3b0";
-  ctx.fillRect(mover.pos, mover.y, mover.w, 3);
+  ctx.fillRect(mover.pos, y, mover.w, 3);
   ctx.fillStyle = "#c4552e";
-  ctx.fillRect(mover.pos + 4, mover.y + 5, 4, 4);
-  ctx.fillRect(mover.pos + mover.w - 8, mover.y + 5, 4, 4);
+  ctx.fillRect(mover.pos + 4, y + 5, 4, 4);
+  ctx.fillRect(mover.pos + mover.w - 8, y + 5, 4, 4);
 }
 
 function drawHazard(ctx, hazard) {

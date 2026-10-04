@@ -6,6 +6,32 @@ import { drift, loadLevel, update } from "./play.js";
 
 const canvas = document.querySelector("#game");
 const ctx = canvas.getContext("2d");
+const scales = ["1", "1.15", "1.3"];
+
+function applyScale(scale) {
+  const chosen = scales.includes(scale) ? scale : "1";
+  document.documentElement.dataset.scale = chosen;
+  document.documentElement.style.setProperty("--scale", chosen);
+  for (const button of document.querySelectorAll(".scale button")) {
+    button.setAttribute("aria-pressed", button.dataset.scale === chosen ? "true" : "false");
+  }
+  try {
+    localStorage.setItem("holdfast-scale", chosen);
+  } catch {
+    /* The climb still changes size for this visit. */
+  }
+}
+
+let saved = "1";
+try {
+  saved = localStorage.getItem("holdfast-scale") || "1";
+} catch {
+  saved = "1";
+}
+applyScale(saved);
+for (const button of document.querySelectorAll(".scale button")) {
+  button.addEventListener("click", () => applyScale(button.dataset.scale));
+}
 
 const state = {
   mode: "title",

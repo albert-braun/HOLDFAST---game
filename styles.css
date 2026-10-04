@@ -1,4 +1,9 @@
 :root {
+  --scale: 1;
+  --side: 18.5rem;
+  --gap: 1.5rem;
+  --pad: 1.25rem;
+  --board: min(calc(960px * var(--scale)), calc(100vw - 2 * var(--side) - 2 * var(--gap) - 2 * var(--pad)));
   color: #efe6d6;
   background: #10151c;
   font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
@@ -11,44 +16,93 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   background:
     radial-gradient(900px 420px at 15% -10%, #243244 0%, transparent 55%),
     #10151c;
 }
 
+.stage {
+  width: 100%;
+  margin-block: auto;
+  padding-bottom: 2.25rem;
+}
+
 .top {
-  width: min(1100px, calc(100% - 2rem));
-  margin: 0 auto;
-  padding: 1.2rem 0 0.8rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 0.4rem 1.5rem;
-  align-items: baseline;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  width: 100%;
+  margin: 0;
+  padding: 0.7rem var(--pad) 0.55rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--board) minmax(0, 1fr);
+  align-items: center;
+  column-gap: var(--gap);
+  background: #10151c;
 }
 
 .brand {
   margin: 0;
+  justify-self: end;
+  white-space: nowrap;
   letter-spacing: 0.16em;
   font-size: 0.95rem;
 }
 
-.top p:last-child {
+.lede {
   margin: 0;
+  justify-self: start;
+  width: max-content;
+  white-space: nowrap;
+  text-align: right;
+  transform: translateX(calc(var(--side) - 100%));
   color: #cbb892;
 }
 
+.scale {
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  flex-wrap: nowrap;
+  gap: 0.35rem;
+  white-space: nowrap;
+}
+
+.scale span {
+  color: #cbb892;
+  margin-right: 0.15rem;
+}
+
+.scale button {
+  font: inherit;
+  color: #efe6d6;
+  background: #1c2633;
+  border: 1px solid #6d5c45;
+  padding: 0.15rem 0.55rem;
+  cursor: pointer;
+}
+
+.scale button[aria-pressed="true"] {
+  color: #141b24;
+  background: #e2b15a;
+  border-color: #e2b15a;
+}
+
 main {
-  width: min(1100px, calc(100% - 2rem));
-  margin: 0 auto 1.5rem;
+  width: 100%;
+  margin: 0;
+  padding: 0.4rem var(--pad) 1rem;
   display: grid;
-  gap: 1rem;
+  grid-template-columns: minmax(0, 1fr) var(--board) minmax(0, 1fr);
+  align-items: start;
+  column-gap: var(--gap);
 }
 
 canvas {
+  grid-column: 2;
   width: 100%;
   height: auto;
+  aspect-ratio: 960 / 544;
   background: #141b24;
   border: 1px solid #3a4656;
   cursor: crosshair;
@@ -61,23 +115,42 @@ canvas:focus-visible {
 }
 
 .help {
-  max-width: 40rem;
+  grid-column: 3;
+  justify-self: start;
+  position: sticky;
+  top: 3.6rem;
+  width: var(--side);
 }
 
 .help h1 {
-  margin: 0 0 0.4rem;
+  margin: 0 0 0.55rem;
   font-size: 1.4rem;
   font-weight: 500;
 }
 
-.help ul {
-  margin: 0;
-  padding-left: 1.1rem;
+.help dl { margin: 0; }
+
+.help div {
+  display: grid;
+  grid-template-columns: 6.4rem minmax(0, 1fr);
+  gap: 0.55rem;
+  align-items: baseline;
 }
 
-.help li + li { margin-top: 0.25rem; }
+.help div + div { margin-top: 0.38rem; }
 
-.help p { color: #cbb892; }
+.help dt,
+.help dd {
+  margin: 0;
+  white-space: nowrap;
+}
+
+.help kbd + kbd { margin-left: 0.2rem; }
+
+.help p {
+  margin: 0.8rem 0 0;
+  color: #cbb892;
+}
 
 kbd {
   font-family: Georgia, serif;
@@ -88,8 +161,8 @@ kbd {
 .touch {
   display: none;
   gap: 0.5rem;
-  width: min(1100px, calc(100% - 2rem));
-  margin: 0 auto 1.5rem;
+  width: min(var(--board), calc(100vw - 2 * var(--pad)));
+  margin: 0 auto 1rem;
 }
 
 .touch button {
@@ -101,10 +174,32 @@ kbd {
   padding: 0.8rem 0.2rem;
 }
 
-@media (min-width: 900px) {
+@media (max-width: 1100px) {
+  .top,
   main {
-    grid-template-columns: minmax(0, 1fr) 18rem;
-    align-items: start;
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    row-gap: 0.55rem;
+  }
+
+  .brand,
+  .scale,
+  .lede,
+  canvas,
+  .help { grid-column: 1; justify-self: center; }
+
+  .lede {
+    width: auto;
+    transform: none;
+    text-align: center;
+    white-space: normal;
+  }
+
+  canvas { width: min(calc(100vw - 2 * var(--pad)), calc(960px * var(--scale))); }
+
+  .help {
+    position: static;
+    width: min(var(--side), 100%);
   }
 }
 
